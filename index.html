@@ -14,18 +14,19 @@
                 <h1>Regra de Três</h1>
             </div>
             <div class="form">
+                <div id="error" class="hidden"></div>
                 <div class="input-container" id="top-input">
-                    <input type="number" name="a" id="a" placeholder="A">
+                    <input type="number" name="a" id="a" class="calc-data" placeholder="A">
                     <div class="swap-div">
                         <div id="swap" title="Trocar A e B">⇄</div>
                     </div>
-                    <input type="number" name="b" id="b" placeholder="B">
+                    <input type="number" name="b" id="b" class="calc-data" placeholder="B">
                 </div>
                 <div id="ac-div">
                     <span>assim como</span>
                 </div>
                 <div class="input-container">
-                    <input type="number" name="c" id="c" placeholder="C">
+                    <input type="number" name="c" id="c" class="calc-data" placeholder="C">
                     <span>está para</span>
                     <input type="number" name="result" id="result" placeholder="X" title="Resultado" disabled>
                 </div>

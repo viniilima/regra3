@@ -5,8 +5,9 @@
     --el: #313131;
     --submit-blue: #337691;
     --submit-dark-blue: #2b657c;
-    --clear-red: #cf6b6b;
-    --clear-dark-red: #be5e5e;
+    --red: #cf6b6b;
+    --dark-red: #be5e5e;
+    --error-red: #af4646;
 }
 
 html, body {
@@ -20,6 +21,10 @@ body {
     background-color: var(--bg);
 }
 
+.hidden {
+    display: none;
+}
+
 .container {
     min-height: 100vh;
     display: flex;
@@ -30,6 +35,14 @@ body {
 h1 {
     font-size: 36px;
     margin-top: 0;
+}
+
+#error {
+    text-align: center;
+    background-color: var(--error-red);
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px #202020;
 }
 
 .main {
@@ -155,13 +168,13 @@ button:focus {
 }
 
 #clear {
-    background-color: var(--clear-red);
-    border: 2px solid var(--clear-red);
+    background-color: var(--red);
+    border: 2px solid var(--red);
 }
 
 #clear:hover {
-    background-color: var(--clear-dark-red);
-    border-color: var(--clear-dark-red);
+    background-color: var(--dark-red);
+    border-color: var(--dark-red);
 }
 
 .swap-div {
