@@ -97,9 +97,10 @@ input:not(#result)::placeholder {
 
 input:focus {
     outline: none;
+    border-bottom: 2px solid #cfcfcf;
 }
 
-.input-container span, .input-container .swap-div {
+.input-container span, .input-container #swap-div {
     color: #ccc;
     margin: 0 20px;
     align-self: center;
@@ -177,14 +178,15 @@ button:focus {
     border-color: var(--dark-red);
 }
 
-.swap-div {
+#swap {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
+    font-size: 2em;
     cursor: pointer;
+    transition: all ease-in-out 200ms;
 }
 
-#swap {
-    display: block;
-    font-size: 2em;
+#swap:hover {
+    transform: rotateY(180deg);
 }

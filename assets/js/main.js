@@ -1,8 +1,10 @@
 const submitBtn = document.getElementById('submit');
 const clearBtn = document.getElementById('clear');
+const swapDiv = document.getElementById('swap');
+const inputs = document.querySelectorAll('.calc-data');
+const resultInput = document.getElementById('result');
 
 function calc() {
-    const inputs = document.querySelectorAll('.calc-data');
     inputs.forEach((input) => {
         if(input.value == null || input.value == '') {
             error('Preencha todos os campos');
@@ -12,9 +14,24 @@ function calc() {
     const a = document.getElementById('a').value;
     const b = document.getElementById('b').value;
     const c = document.getElementById('c').value;
-    const resultInput = document.getElementById('result');
 
     resultInput.value = (b / a) * c;
+    resultInput.classList.add('success');
+}
+
+function clear() {
+    inputs.forEach((input) => {
+        input.value = null;
+    });
+    resultInput.value = null;
+}
+
+function swap() {
+    const a = document.getElementById('a');
+    const b = document.getElementById('b');
+    const aux = a.value;
+    a.value = b.value;
+    b.value = aux;
 }
 
 function error(msg) {
@@ -28,3 +45,7 @@ function error(msg) {
 }
 
 submitBtn.addEventListener('click', calc);
+
+clearBtn.addEventListener('click', clear);
+
+swapDiv.addEventListener('click', swap);
