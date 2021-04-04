@@ -3,6 +3,19 @@ const clearBtn = document.getElementById('clear');
 const swapDiv = document.getElementById('swap');
 const inputs = document.querySelectorAll('.calc-data');
 const resultInput = document.getElementById('result');
+const keys = {
+    Enter() {
+        calc();
+    },
+
+    c() {
+        clear();
+    },
+
+    s() {
+        swap();
+    }
+};
 
 document.onload = clear();
 
@@ -52,6 +65,17 @@ function error(msg) {
 // Event listeners
 
 submitBtn.addEventListener('click', calc);
+
+for(let input of inputs) {
+    input.addEventListener('keyup', function(e) {
+        try {
+            const pressedKey = keys[e.key];
+            pressedKey();
+        } catch(e) {
+            return;
+        }
+    });
+}
 
 clearBtn.addEventListener('click', clear);
 
