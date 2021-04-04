@@ -127,9 +127,11 @@ window.addEventListener('load', function() {
     if(JSON.parse(localStorage.getItem('show_settings')))
         settings_popup.classList.remove('hidden');
     const round_value = localStorage.getItem('round_value');
-    round_input.value = round_value == null 
-        ? localStorage.setItem('round_value', 2) 
-        : round_value;
+    if(round_value == null) {
+        localStorage.setItem('round_value', 2);
+        round_value = 2;
+    }
+    round_input.value = round_value;
 });
 
 submit_btn.addEventListener('click', function() {
