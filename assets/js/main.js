@@ -3,6 +3,7 @@ const clearBtn = document.getElementById('clear');
 const swapDiv = document.getElementById('swap');
 const inputs = document.querySelectorAll('.calc-data');
 const resultInput = document.getElementById('result');
+
 const keys = {
     Enter() {
         calc();
@@ -13,6 +14,8 @@ const keys = {
     },
 
     s() {
+        const swapIcon = document.getElementById('swap');
+        swapIcon.style.transform = 'rotateY(180deg)';
         swap();
     }
 };
@@ -33,6 +36,7 @@ function calc() {
     const c = document.getElementById('c').value;
 
     resultInput.value = (b / a) * c;
+    resultInput.classList.add('calc');
 }
 
 function clear() {
@@ -40,6 +44,7 @@ function clear() {
         input.value = null;
     });
     resultInput.value = null;
+    resultInput.classList.remove('calc');
     inputs[0].focus();
 }
 
@@ -60,7 +65,6 @@ function error(msg) {
         errorDiv.classList.add('hidden');
     }, 2000);
 }
-
 
 // Event listeners
 

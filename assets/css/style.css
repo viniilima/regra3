@@ -112,10 +112,15 @@ input:focus {
 
 #result {
     border-bottom: 2px solid #5a5a5a;
+    transition: all ease-in-out 100ms;
 }
 
 #result::placeholder {
     color: #5a5a5a;
+}
+
+#result.calc {
+    border-bottom: 2px solid #64da64;
 }
 
 #ac-div {
