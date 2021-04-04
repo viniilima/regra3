@@ -5,9 +5,11 @@ const inputs = document.querySelectorAll('.calc-data');
 const result_input = document.getElementById('result');
 const settings_btn = document.getElementById('settings-btn');
 const settings_popup = document.getElementById('settings-popup');
+const round_input = document.getElementById('round');
 
 const keys = {
     Enter() {
+        if(empty_input(true)) return;
         calc();
     },
 
@@ -19,25 +21,32 @@ const keys = {
         const swapIcon = document.getElementById('swap');
         swapIcon.style.transform = 'rotateY(180deg)';
         swap();
+    },
+
+    r() {
+        round_input.focus();
     }
 };
 
 // Functions
 
 function calc() {
-    for(let input of inputs) {
-        if(input.value == null || input.value == '') {
-            error('Preencha todos os campos');
-            return;
-        }
-    }
     const a = document.getElementById('a').value;
     const b = document.getElementById('b').value;
     const c = document.getElementById('c').value;
-    const roundValue = document.getElementById('round').value;
 
-    result_input.value = (b / a) * c;
+    result_input.value = ((b / a) * c).toFixed(localStorage.getItem('round_value'));
     result_input.classList.add('calc');
+}
+
+function empty_input(show_error_message) {
+    for(let input of inputs) {
+        if(input.value == null || input.value == '') {
+            if(show_error_message) error('Preencha todos os campos');
+            return true;
+        }
+    }
+    return false;
 }
 
 function clear() {
@@ -75,6 +84,13 @@ function settings_handler() {
     }
 }
 
+function round_handler() {
+    if(round_input.value == '') return;
+    localStorage.setItem('round_value', round_input.value);
+    if(empty_input(false)) return;
+    calc();
+}
+
 // Event listeners
 
 for(let input of inputs) {
@@ -92,12 +108,19 @@ window.addEventListener('load', function() {
     clear();
     if(JSON.parse(localStorage.getItem('show_settings')))
         settings_popup.classList.remove('hidden');
+    const round_value = localStorage.getItem('round_value');
+    round_input.value = round_value == null ? 2 : round_value;
 });
 
-submit_btn.addEventListener('click', calc);
+submit_btn.addEventListener('click', function() {
+    if(empty_input(true)) return;
+    calc();
+});
 
 clear_btn.addEventListener('click', clear);
 
 swap_div.addEventListener('click', swap);
 
 settings_btn.addEventListener('click', settings_handler);
+
+round_input.addEventListener('input', round_handler);
