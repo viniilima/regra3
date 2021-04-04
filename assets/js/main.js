@@ -1,8 +1,10 @@
-const submitBtn = document.getElementById('submit');
-const clearBtn = document.getElementById('clear');
-const swapDiv = document.getElementById('swap');
+const submit_btn = document.getElementById('submit');
+const clear_btn = document.getElementById('clear');
+const swap_div = document.getElementById('swap');
 const inputs = document.querySelectorAll('.calc-data');
-const resultInput = document.getElementById('result');
+const result_input = document.getElementById('result');
+const settings_btn = document.getElementById('settings-btn');
+const settings_popup = document.getElementById('settings-popup');
 
 const keys = {
     Enter() {
@@ -20,8 +22,6 @@ const keys = {
     }
 };
 
-document.onload = clear();
-
 // Functions
 
 function calc() {
@@ -34,17 +34,18 @@ function calc() {
     const a = document.getElementById('a').value;
     const b = document.getElementById('b').value;
     const c = document.getElementById('c').value;
+    const roundValue = document.getElementById('round').value;
 
-    resultInput.value = (b / a) * c;
-    resultInput.classList.add('calc');
+    result_input.value = (b / a) * c;
+    result_input.classList.add('calc');
 }
 
 function clear() {
     inputs.forEach((input) => {
         input.value = null;
     });
-    resultInput.value = null;
-    resultInput.classList.remove('calc');
+    result_input.value = null;
+    result_input.classList.remove('calc');
     inputs[0].focus();
 }
 
@@ -66,9 +67,15 @@ function error(msg) {
     }, 2000);
 }
 
-// Event listeners
+function settings_handler() {
+    if(!settings_popup.classList.toggle('hidden')) {
+        localStorage.setItem('show_settings', true);
+    } else {
+        localStorage.setItem('show_settings', false);
+    }
+}
 
-submitBtn.addEventListener('click', calc);
+// Event listeners
 
 for(let input of inputs) {
     input.addEventListener('keyup', function(e) {
@@ -81,6 +88,16 @@ for(let input of inputs) {
     });
 }
 
-clearBtn.addEventListener('click', clear);
+window.addEventListener('load', function() {
+    clear();
+    if(JSON.parse(localStorage.getItem('show_settings')))
+        settings_popup.classList.remove('hidden');
+});
 
-swapDiv.addEventListener('click', swap);
+submit_btn.addEventListener('click', calc);
+
+clear_btn.addEventListener('click', clear);
+
+swap_div.addEventListener('click', swap);
+
+settings_btn.addEventListener('click', settings_handler);

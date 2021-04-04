@@ -21,10 +21,6 @@ body {
     background-color: var(--bg);
 }
 
-.hidden {
-    display: none;
-}
-
 .container {
     min-height: 100vh;
     display: flex;
@@ -46,15 +42,45 @@ h1 {
 }
 
 .main {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: var(--el);
+    background-color: var(--el);
     color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 1em black;
+}
+
+.settings {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.settings img {
+    width: 24px;
+    height: 24px;
+    filter: invert(100%) opacity(0.5);
+    cursor: pointer;
+    transition: all ease-in-out 100ms;
+}
+
+.settings img:hover {
+    transform: rotate(20deg);
+}
+
+#settings-popup {
+    position: absolute;
+    left: 55px;
+    top: -20px;
+    box-shadow: 0 0 1em black;
+    border-radius: 5px;
+    background-color: var(--el);
+    padding: 20px;
+    padding-top: 0;
 }
 
 /* FORM AND INPUTS */
@@ -72,7 +98,7 @@ h1 {
     justify-content: space-between;
 }
 
-.input-container input {
+input {
     font-family: 'Poppins', sans-serif;
     font-size: 2em;
     padding: 5px;
@@ -125,6 +151,29 @@ input:focus {
 
 #ac-div {
     align-self: center;
+    color: #929292;
+}
+
+.round-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-end;
+    position: relative;
+}
+
+#round {
+    display: block;
+    width: 40px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+#round-label {
+    position: absolute;
+    bottom: -18px;
+    font-size: 0.7em;
+    text-align: center;
     color: #929292;
 }
 
@@ -194,4 +243,8 @@ button:focus {
 
 #swap:hover {
     transform: rotateY(180deg);
+}
+
+.hidden {
+    display: none;
 }
