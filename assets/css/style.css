@@ -256,7 +256,8 @@ button:focus {
     position: absolute;
     right: 0;
     bottom: 5px;
-    padding: 10px 5px 5px;
+    padding: 10px 5px 0;
+    margin-bottom: 5px;
     background-color: rgb(49, 49, 49, 0.8);
 }
 
@@ -286,4 +287,94 @@ button:focus {
 
 .hidden {
     display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .input-container {
+        flex-direction: column;
+    }
+
+    .input-container input {
+        margin-bottom: 20px;
+        display: block;
+        width: 300px;
+    }
+
+    #swap {
+        transform: rotate(90deg);
+    }
+
+    #copy-container {
+        bottom: 20px
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    .input-container input {
+        display: block;
+        width: 350px;
+    }
+
+    .settings {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .input-container input {
+        display: block;
+        width: 250px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .input-container input {
+        display: block;
+        width: 200px;
+    }
+}
+
+@media only screen and (max-height: 790px) {
+    .input-container {
+        margin: 0;
+        padding: 0;
+    }
+
+    #top-input {
+        margin-bottom: 20px;
+    }
+
+    .input-container input {
+        margin-bottom: 10px;
+    }
+
+    #swap {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 620px) {
+    .main {
+        padding: 5px
+    }
+
+    .title h1 {
+        font-size: 32px;
+    }
+
+    #top-input {
+        margin-bottom: 10px;
+    }
+
+    .input-container input {
+        margin-bottom: 10px;
+    }
+
+    .btns {
+        margin: 0;
+    }
+
+    #submit {
+        margin-bottom: 5px;
+    }
 }
