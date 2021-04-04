@@ -126,7 +126,7 @@ window.addEventListener('load', function() {
     clear();
     if(JSON.parse(localStorage.getItem('show_settings')))
         settings_popup.classList.remove('hidden');
-    const round_value = localStorage.getItem('round_value');
+    let round_value = localStorage.getItem('round_value');
     if(round_value == null) {
         localStorage.setItem('round_value', 2);
         round_value = 2;
