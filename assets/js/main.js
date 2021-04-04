@@ -4,19 +4,22 @@ const swapDiv = document.getElementById('swap');
 const inputs = document.querySelectorAll('.calc-data');
 const resultInput = document.getElementById('result');
 
+document.onload = clear();
+
+// Functions
+
 function calc() {
-    inputs.forEach((input) => {
+    for(let input of inputs) {
         if(input.value == null || input.value == '') {
             error('Preencha todos os campos');
             return;
         }
-    });
+    }
     const a = document.getElementById('a').value;
     const b = document.getElementById('b').value;
     const c = document.getElementById('c').value;
 
     resultInput.value = (b / a) * c;
-    resultInput.classList.add('success');
 }
 
 function clear() {
@@ -24,6 +27,7 @@ function clear() {
         input.value = null;
     });
     resultInput.value = null;
+    inputs[0].focus();
 }
 
 function swap() {
@@ -43,6 +47,9 @@ function error(msg) {
         errorDiv.classList.add('hidden');
     }, 2000);
 }
+
+
+// Event listeners
 
 submitBtn.addEventListener('click', calc);
 
