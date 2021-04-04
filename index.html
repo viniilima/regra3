@@ -35,7 +35,13 @@
                 <div class="input-container">
                     <input type="number" name="c" id="c" class="calc-data" placeholder="C">
                     <span>está para</span>
-                    <input type="text" name="result" id="result" placeholder="X" title="Resultado" disabled>
+                    <div id="result-container">
+                        <input type="text" name="result" id="result" placeholder="X" title="Resultado" disabled>
+                        <div id="copy-container" class="hidden">
+                            <span id="copied" class="hidden">Copiado!</span>
+                            <img id="copy" src="assets/img/icons/copy.svg" alt="Copiar" title="Copiar">
+                        </div>
+                    </div>
                 </div>
                 <div class="btns">
                     <button id="submit">Calcular</button>

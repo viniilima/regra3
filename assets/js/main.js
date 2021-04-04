@@ -6,6 +6,7 @@ const result_input = document.getElementById('result');
 const settings_btn = document.getElementById('settings-btn');
 const settings_popup = document.getElementById('settings-popup');
 const round_input = document.getElementById('round');
+const copy_icon = document.getElementById('copy');
 
 const keys = {
     Enter() {
@@ -37,6 +38,7 @@ function calc() {
 
     result_input.value = ((b / a) * c).toFixed(localStorage.getItem('round_value'));
     result_input.classList.add('calc');
+    copy_icon.parentElement.classList.remove('hidden');
 }
 
 function empty_input(show_error_message) {
@@ -56,6 +58,7 @@ function clear() {
     result_input.value = null;
     result_input.classList.remove('calc');
     inputs[0].focus();
+    copy_icon.parentElement.classList.add('hidden');
 }
 
 function swap() {
@@ -91,6 +94,21 @@ function round_handler() {
     calc();
 }
 
+function copy_result() {
+    const msg = document.getElementById('copied');
+    msg.classList.remove('hidden');
+    setTimeout(() => {
+        msg.classList.add('hidden');
+    }, 2000);
+
+    const txt_area = document.createElement('textarea');
+    txt_area.value = result_input.value;
+    document.body.appendChild(txt_area);
+    txt_area.select();
+    document.execCommand('copy');
+    document.body.removeChild(txt_area);
+}
+
 // Event listeners
 
 for(let input of inputs) {
@@ -109,7 +127,9 @@ window.addEventListener('load', function() {
     if(JSON.parse(localStorage.getItem('show_settings')))
         settings_popup.classList.remove('hidden');
     const round_value = localStorage.getItem('round_value');
-    round_input.value = round_value == null ? 2 : round_value;
+    round_input.value = round_value == null 
+        ? localStorage.setItem('round_value', 2) 
+        : round_value;
 });
 
 submit_btn.addEventListener('click', function() {
@@ -124,3 +144,16 @@ swap_div.addEventListener('click', swap);
 settings_btn.addEventListener('click', settings_handler);
 
 round_input.addEventListener('input', round_handler);
+
+copy_icon.addEventListener('click', copy_result);
+
+document.addEventListener('keydown', function(e) {
+    if(e.key == 'Control') {
+        document.addEventListener('keydown', function(e) {
+            if(e.key == 'c') {
+                if(result_input.value == null) return;
+                copy_result();
+            }
+        });
+    }
+});

@@ -63,7 +63,7 @@ h1 {
 .settings img {
     width: 24px;
     height: 24px;
-    filter: invert(100%) opacity(0.5);
+    filter: invert(1) opacity(0.5);
     cursor: pointer;
     transition: all ease-in-out 100ms;
 }
@@ -135,6 +135,10 @@ input:focus {
 
 #top-input {
     margin-bottom: 40px;
+}
+
+#result-container {
+    position: relative;
 }
 
 #result {
@@ -246,6 +250,38 @@ button:focus {
 
 #swap:hover {
     transform: rotateY(180deg);
+}
+
+#copy-container {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    padding: 10px 5px 5px;
+    background-color: rgb(49, 49, 49, 0.8);
+}
+
+#copy {
+    width: 24px;
+    height: 24px;
+    filter: invert(1) opacity(0.7);
+    cursor: pointer;
+}
+
+#copy:hover {
+    opacity: 0.8;
+}
+
+#copied {
+    background-color: #2b2b2b;
+    color: #ccc;
+    font-size: 0.8em;
+    position: absolute;
+    top: -35px;
+    right: 0;
+    transform: translateX(55%);
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px #202020;
 }
 
 .hidden {
