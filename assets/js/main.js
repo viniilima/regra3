@@ -111,17 +111,7 @@ function copy_result() {
 
 // Event listeners
 
-for(let input of inputs) {
-    input.addEventListener('keyup', function(e) {
-        try {
-            const pressedKey = keys[e.key];
-            pressedKey();
-        } catch(e) {
-            return;
-        }
-    });
-}
-
+// Initial setup
 window.addEventListener('load', function() {
     clear();
     if(JSON.parse(localStorage.getItem('show_settings')))
@@ -132,6 +122,16 @@ window.addEventListener('load', function() {
         round_value = 2;
     }
     round_input.value = round_value;
+});
+
+// Keybinds
+document.addEventListener('keyup', function(e) {
+    try {
+        const pressedKey = keys[e.key];
+        pressedKey();
+    } catch(e) {
+        return;
+    }
 });
 
 submit_btn.addEventListener('click', function() {
@@ -149,6 +149,7 @@ round_input.addEventListener('input', round_handler);
 
 copy_icon.addEventListener('click', copy_result);
 
+// Copy
 document.addEventListener('keydown', function(e) {
     if(e.key == 'Control') {
         document.addEventListener('keydown', function(e) {
